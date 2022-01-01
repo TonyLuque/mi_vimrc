@@ -1,3 +1,34 @@
+"nmap <Leader>py <Plug>(Prettier)"
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:javascript_plugin_jsdoc = 1
+let g:ale_completion_autoimport = 1
+let g:ale_completion_enabled = 1
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+" Plugins will be downloaded under the specified directory.
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
+Plug 'eslint/eslint'
+Plug 'pangloss/vim-javascript'
+Plug 'dense-analysis/ale'
+Plug 'mxw/vim-jsx'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+"---------------------------------------------"
 set encoding=utf8
 set rnu "Muestra nº de línea a la izquierda relativo a la linea en la que estas."
 set number "Muestra nº de línea a la izquierda. Interesante combinarlo con la siguiente opción."
